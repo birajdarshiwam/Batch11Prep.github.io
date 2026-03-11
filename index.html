@@ -165,19 +165,6 @@ body {
 .bar-sub { display: flex; gap: 10px; margin-top: 1px; }
 .bar-sub span { font-size: 10px; }
 
-/* Company grid */
-.company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px,1fr)); gap: 12px; }
-.company-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-  padding: 16px; transition: transform 0.2s, border-color 0.2s;
-}
-.company-card:hover { transform: translateY(-3px); border-color: rgba(91,138,245,0.3); }
-.company-name { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; margin-bottom: 8px; }
-.c-bar-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; display: flex; margin-bottom: 8px; }
-.c-stats { display: flex; gap: 10px; flex-wrap: wrap; }
-.c-stat { font-size: 10px; display: flex; align-items: center; gap: 3px; color: var(--muted); }
-.c-dot { width: 6px; height: 6px; border-radius: 50%; }
-.c-val { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--text); }
 
 /* ─── SKILLS SECTION ──────────────────────────────────────── */
 .s-header { text-align: center; margin-bottom: 32px; animation: fadeUp .6s ease both; }
@@ -378,11 +365,6 @@ body {
     </div>
   </div>
 
-  <!-- Row 2: Company grid -->
-  <div class="card anim-2">
-    <div class="card-title">Internship Conversion Rate</div>
-    <div class="company-grid" id="companyGrid"></div>
-  </div>
 
 </section>
 
@@ -471,51 +453,6 @@ domains.forEach(d => {
   domainEl.appendChild(row);
 });
 
-const companies = [
-  { name: 'Mastercard',          Offered: 6, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'DE Shaw',             Offered: 5, Rejected: 4, 'Oh Hold': 0 },
-  { name: 'Oliver Wyman',        Offered: 4, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'Sun Pharma',          Offered: 4, Rejected: 2, 'Oh Hold': 0 },
-  { name: 'Kenvue',              Offered: 3, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'LTFS',                Offered: 3, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'Piramal Finance',     Offered: 3, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'QRT',                 Offered: 1, Rejected: 3, 'Oh Hold': 0 },
-  { name: 'BCG',                 Offered: 2, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'JPMC',                Offered: 2, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'Amgen',               Offered: 0, Rejected: 0, 'Oh Hold': 2 },
-  { name: 'Capgemini',           Offered: 0, Rejected: 0, 'Oh Hold': 2 },
-  { name: 'Swiggy',              Offered: 0, Rejected: 0, 'Oh Hold': 2 },
-  { name: 'Auxo AI',             Offered: 1, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'Decision Point',      Offered: 1, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'JSW One',             Offered: 1, Rejected: 1, 'Oh Hold': 0 },
-  { name: 'Polycab',             Offered: 1, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'ReNew',               Offered: 1, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'TrueMeds',            Offered: 1, Rejected: 0, 'Oh Hold': 0 },
-  { name: 'Biosky',              Offered: 0, Rejected: 1, 'Oh Hold': 0 },
-  { name: 'Colgate Palmolive',   Offered: 0, Rejected: 1, 'Oh Hold': 0 },
-  { name: 'Havish M Consulting', Offered: 0, Rejected: 1, 'Oh Hold': 0 },
-  { name: 'PnG',                 Offered: 0, Rejected: 1, 'Oh Hold': 0 },
-];
-const gridEl = document.getElementById('companyGrid');
-companies.forEach(c => {
-  const total = c.Offered + c.Rejected + c['Oh Hold'];
-  const color = c.Offered > 0 ? 'var(--offered)' : c['Oh Hold'] > 0 ? 'var(--onhold)' : 'var(--rejected)';
-  const card = document.createElement('div');
-  card.className = 'company-card';
-  card.innerHTML = `
-    <div class="company-name" style="color:${color}">${c.name}</div>
-    <div class="c-bar-track">
-      <div class="bar-seg" style="width:${(c.Offered/total*100).toFixed(1)}%;background:var(--offered)"></div>
-      <div class="bar-seg" style="width:${(c.Rejected/total*100).toFixed(1)}%;background:var(--rejected)"></div>
-      <div class="bar-seg" style="width:${(c['Oh Hold']/total*100).toFixed(1)}%;background:var(--onhold)"></div>
-    </div>
-    <div class="c-stats">
-      ${c.Offered   ? `<span class="c-stat"><span class="c-dot" style="background:var(--offered)"></span><span class="c-val">${c.Offered}</span> off</span>` : ''}
-      ${c.Rejected  ? `<span class="c-stat"><span class="c-dot" style="background:var(--rejected)"></span><span class="c-val">${c.Rejected}</span> rej</span>` : ''}
-      ${c['Oh Hold']? `<span class="c-stat"><span class="c-dot" style="background:var(--onhold)"></span><span class="c-val">${c['Oh Hold']}</span> hold</span>` : ''}
-    </div>`;
-  gridEl.appendChild(card);
-});
 
 /* ─── SKILLS DATA ─────────────────────────────────────────── */
 const PATHS = {
